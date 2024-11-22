@@ -43,8 +43,9 @@ public class LangChainConfiguration {
                                     @Qualifier("llmServiceExecutor") ExecutorService executorService,
                                     List<ToolSpecification> toolSpecificationList,
                                     ToolProvider toolProvider,
-                                    Map<String, ChatMemory> memoryMap) {
-        return new LangchainLLMServiceImpl(chatLanguageModel, toolSpecificationList, executorService, toolProvider, memoryMap);
+                                    Map<String, ChatMemory> memoryMap,
+                                    LLMProperties llmProperties) {
+        return new LangchainLLMServiceImpl(chatLanguageModel, toolSpecificationList, executorService, toolProvider, memoryMap, llmProperties);
     }
 
     @Bean("defaultChatMemory")

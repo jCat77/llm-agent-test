@@ -37,6 +37,8 @@ public class LLMProperties {
         @Valid
         private Context context = new Context();
 
+        private SystemPrompt systemPrompt = new SystemPrompt();
+
 
         @Getter
         @Setter
@@ -45,9 +47,15 @@ public class LLMProperties {
             @NotEmpty
             private int length = 16 * 1024;
 
-
         }
+    }
 
+    @Getter
+    @Setter
+    public static class SystemPrompt {
+
+        @NotEmpty
+        private String defaultPrompt;
 
     }
 }

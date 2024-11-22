@@ -1,6 +1,8 @@
 package com.jcat.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jcat.domain.tools.*;
+import com.jcat.domain.tools.parser.MathToolParameterParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -65,6 +67,14 @@ public class ApplicationConfiguration {
         return new MapBasedToolProvider(toolMap);
     }
 
+    @Bean
+    public ObjectMapper getObjectMapper() {
+        return new ObjectMapper();
+    }
 
+    @Bean
+    public MathToolParameterParser getMathToolParameterParser(ObjectMapper objectMapper) {
+        return new MathToolParameterParser(objectMapper);
+    }
 
 }
