@@ -1,0 +1,11 @@
+1. do not exists functionality about user message history at all
+
+    "LangChain4j currently offers only "memory", not "history".
+    If you need to keep an entire history, please do so manually."
+
+2. do not have persistence chat memory impl by default, only in-memory.
+
+    "If persistence is required, a custom ChatMemoryStore can be implemented
+    to store ChatMessages in any persistent store of your choice."
+
+3.

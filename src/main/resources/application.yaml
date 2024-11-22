@@ -1,0 +1,11 @@
+com:
+  jcat:
+    model:
+      llm:
+        fuckup-message: "Sorry, some problems with LLM response =( Try again later"
+        open-ai:
+          api-key: demo
+          context:
+            length: 2048
+          model-name: gpt-4o-mini
+
