@@ -2,6 +2,7 @@ package com.jcat.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jcat.domain.tools.*;
+import com.jcat.domain.tools.parser.MailToolParameterParser;
 import com.jcat.domain.tools.parser.MathToolParameterParser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -75,6 +76,11 @@ public class ApplicationConfiguration {
     @Bean
     public MathToolParameterParser getMathToolParameterParser(ObjectMapper objectMapper) {
         return new MathToolParameterParser(objectMapper);
+    }
+
+    @Bean
+    public MailToolParameterParser getMailToolParameterParser(ObjectMapper objectMapper) {
+        return new MailToolParameterParser(objectMapper);
     }
 
 }

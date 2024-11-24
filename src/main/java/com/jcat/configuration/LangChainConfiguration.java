@@ -1,7 +1,7 @@
 package com.jcat.configuration;
 
 import com.jcat.domain.LLMService;
-import com.jcat.domain.LangchainLLMServiceImpl;
+import com.jcat.domain.langchain.LangchainLLMServiceImpl;
 import com.jcat.domain.tools.Tool;
 import com.jcat.domain.tools.ToolProvider;
 import com.jcat.properties.LLMProperties;
@@ -68,8 +68,8 @@ public class LangChainConfiguration {
     }
 
     @Bean
-    public Tokenizer tokenizer() {
-        return new OpenAiTokenizer();
+    public Tokenizer tokenizer(LLMProperties llmProperties) {
+        return new OpenAiTokenizer(llmProperties.getOpenAi().getModelName());
     }
 
 

@@ -12,9 +12,15 @@
 <!--        <appender-ref ref="console" />-->
 <!--    </logger>-->
 
-
-    <root level="INFO">
-        <appender-ref ref="console" />
-    </root>
+    <springProfile name="!(dev)">
+        <root level="OFF">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
 
 </configuration>

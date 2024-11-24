@@ -1,5 +1,6 @@
-package com.jcat.domain;
+package com.jcat.domain.langchain;
 
+import com.jcat.domain.LLMService;
 import com.jcat.domain.tools.ToolMeta;
 import com.jcat.domain.tools.ToolProvider;
 import com.jcat.domain.tools.parser.ParameterParser;
@@ -86,12 +87,14 @@ public class LangchainLLMServiceImpl implements LLMService, ApplicationContextAw
                 for (Future<ToolExecutionResultMessage> f : futures) {
                     try {
                         ToolExecutionResultMessage toolExecutionResultMessage = f.get();
-                        messages.add(toolExecutionResultMessage);
-                        newMessages.add(toolExecutionResultMessage);
+                        return toolExecutionResultMessage.text();
+//                        messages.add(toolExecutionResultMessage);
+//                        newMessages.add(toolExecutionResultMessage);
                     } catch (Exception e) {
                         log.error("Exception when call tool", e);
                     }
                 }
+//                return chatLanguageModel.generate(messages).content().text();
                 return chatLanguageModel.generate(messages).content().text();
             }
 
@@ -100,7 +103,7 @@ public class LangchainLLMServiceImpl implements LLMService, ApplicationContextAw
 
         } catch (Exception e) {
             log.error("Some error while handle message={} by user={}", text, userId);
-            throw e;
+            return llmProperties.getFuckupMessage();
 
         } finally {
             try {

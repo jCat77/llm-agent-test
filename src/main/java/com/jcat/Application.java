@@ -1,6 +1,7 @@
 package com.jcat;
 
-import com.jcat.domain.Supervisor;
+import com.jcat.domain.LLMService;
+import com.jcat.misc.Color;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,30 +14,31 @@ import java.util.Scanner;
 @Slf4j
 public class Application implements CommandLineRunner {
 
-    private final Supervisor supervisor;
+    private final LLMService llmService;
 
-    public Application(Supervisor supervisor) {
-        this.supervisor = supervisor;
+    public Application(LLMService llmService) {
+        this.llmService = llmService;
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args).close();
     }
 
     @Override
     public void run(String... args) throws IOException {
-        log.info("Application started....");
-        log.info("Type quit to exit.");
+        System.out.println(Color.WHITE + "Для выхода набери выход!" + Color.RESET);
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();
-            if ("quit".equals(userInput)) {
+            if ("выход".equals(userInput)) {
                 break;
             }
-            String reply = supervisor.userMessage(userInput);
-            System.out.println("Server:" + reply);
+            String reply = llmService.generate(userInput);
+            System.out.println(Color.CYAN_BRIGHT + reply + Color.RESET);
         }
-        log.info("Bye!");
+        System.out.println(Color.WHITE + "Пока!" + Color.RESET);
+
     }
+
 }
